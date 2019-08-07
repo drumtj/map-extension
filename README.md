@@ -12,7 +12,7 @@ This library is **Map Class Extension**
 - you can clone an object with the clone() method.
 - you can use map, filter, reduce like an array.
 
-In an array you have to loop around to find the elements, and in an object you have to loop around to know the total length. Mapx brings together the advantages of arrays and objects. We have improved the inconvenience of the existing Map Class.
+Arrays have some nice features for manipulating data such as map, forEach, filter, and reduce, but the disadvantage of using loops to check for the inclusion of elements. And objects can find elements quickly using keys, but you have to use loops to process the data, which is inconvenient for handling deep data. Mapx improves on the inconveniences of traditional Map Classes and brings the benefits of arrays and objects.
 
 ## Installing
 
@@ -65,9 +65,6 @@ map.has(keyString)
 
 // delete value
 map.delete(keyString);
-
-// get length
-map.size;
 
 // loop
 for(let [key, value] of map.entries()){
