@@ -102,7 +102,7 @@ map.setArray2D(arrayData2D); // same -> new Mapx(arrayData2D)
 // Return all values
 map.toArray(); // 2D array ([[key, value], ...])
 
-// Return only values ​​with numeric or letter keys
+// Return only values ​​whose keys are numeric or string type
 map.toObject(); // object
 
 // create clone
