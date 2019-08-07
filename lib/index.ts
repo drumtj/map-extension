@@ -1,3 +1,5 @@
+import uuid from "uuid/v1";
+
 export default class Mapx extends Map {
 	constructor(obj?){
 		super();
@@ -41,13 +43,6 @@ export default class Mapx extends Map {
     return this;
   }
 
-  // setArray2DVK(arr){
-  //   for(let o=0; o<arr.length; o++){
-  //     this.set(arr[o][1], arr[o][0]);
-  //   }
-  //   return this;
-  // }
-
 	setObject(obj){
     for(let o in obj){
       this.set(o, obj[o]);
@@ -63,14 +58,6 @@ export default class Mapx extends Map {
 		return arr;
   }
 
-	// toArrayVK(){
-	// 	let arr = [];
-	// 	for(let [k, v] of this.entries()){
-	// 		arr.push([v,k]);
-  //   }
-	// 	return arr;
-  // }
-
 	toObject(){
 		let obj = {};
 		for(let [k, v] of this.entries()){
@@ -85,11 +72,6 @@ export default class Mapx extends Map {
     return this.toArray().map((v,k,a)=>{
       return c(v[1], v[0], a);
     });
-		// let arr = [];
-		// for(let [k, v] of this.entries()){
-		// 	arr.push(c(v, k));
-    // }
-    // return arr;
   }
 
   clone(){
@@ -108,13 +90,6 @@ export default class Mapx extends Map {
     return this.toArray().filter((v,k,a)=>{
       return c(v[1], v[0], a);
     });
-		// let arr = [];
-		// for(let [k, v] of this.entries()){
-		// 	if(c(v, k)){
-		// 		arr.push([k, v]);
-    //   }
-    // }
-		// return arr;
   }
 
   filter(c:(value, key, map)=>boolean):Mapx{
@@ -132,4 +107,42 @@ export default class Mapx extends Map {
       return c(r, v[1], v[0], a);
     }, r);
   }
+
+	//return key
+	push(value): any {
+		let key = uuid();
+		this.set(key, value);
+		return key;
+	}
+
+	//return [key, value];
+	pop(): any[] {
+		let i=0;
+		if(this.size){
+			for(let kv of this.entries()){
+				if(++i >= this.size){
+					this.delete(kv[0]);
+					return kv[1];
+				}
+	    }
+		}else{
+			return;
+		}
+	}
+
+	toValues(): any[] {
+		let arr = [];
+		for(let v of this.values()){
+			arr.push(v);
+    }
+		return arr;
+	}
+
+	toKeys(): any[] {
+		let arr = [];
+		for(let v of this.keys()){
+			arr.push(v);
+    }
+		return arr;
+	}
 }

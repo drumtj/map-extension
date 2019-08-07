@@ -99,11 +99,23 @@ map.setObject(objectData); // same -> new Mapx(objectData)
 map.setArray1D(arrayData1D); // same -> new Mapx(arrayData1D)
 map.setArray2D(arrayData2D); // same -> new Mapx(arrayData2D)
 
-// Return all values
+//push and pop like array
+//return key
+let key = map.push("D");
+//return value;
+map.pop();
+
+// Return all item
 map.toArray(); // 2D array ([[key, value], ...])
 
-// Return only values ​​whose keys are numeric or string type
+// Return only items ​​whose keys are numeric or string type
 map.toObject(); // object
+
+// Return values
+map.toValues(); // 1D array
+
+// Retuen keys
+map.toKeys(); // 1D array
 
 // create clone
 map.clone();
