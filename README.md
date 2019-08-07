@@ -1,4 +1,4 @@
-# Datex
+# Mapx
 
 [![npm version](https://img.shields.io/npm/v/@drumtj/mapx.svg?style=flat)](https://www.npmjs.com/package/@drumtj/mapx)
 [![license](https://img.shields.io/npm/l/@drumtj/mapx.svg)](#)
@@ -7,8 +7,12 @@ This library is **Map Class Extension**
 
 ## Features
 
-- settable key, value from object or array to Map
--
+- you can set key and value from object or array
+- you can change the size of the map with the length property.
+- you can clone an object with the clone() method.
+- you can use map, filter, reduce like an array.
+
+In an array you have to loop around to find the elements, and in an object you have to loop around to know the total length. Mapx brings together the advantages of arrays and objects. We have improved the inconvenience of the existing Map Class.
 
 ## Installing
 
@@ -21,17 +25,17 @@ $ npm install @drumtj/mapx
 Using cdn:
 
 ```html
-<script src="https://unpkg.com/@drumtj/datex@1.0.1/dist/mapx.js"></script>
+<script src="https://unpkg.com/@drumtj/mapx@1.0.1/dist/mapx.js"></script>
 ```
 
 Using amd, commonjS Module
 
 ```js
-const Datex = require('@drumtj/mapx');
+const Mapx = require('@drumtj/mapx');
 ```
 
 ```js
-import Datex from '@drumtj/mapx';
+import Mapx from '@drumtj/mapx';
 ```
 
 ## Example
