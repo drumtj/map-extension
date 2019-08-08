@@ -1,6 +1,6 @@
 {
   "name": "@drumtj/mapx",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "extension Map class",
   "main": "./dist/mapx.umd.js",
   "scripts": {
