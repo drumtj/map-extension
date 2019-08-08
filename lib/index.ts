@@ -27,20 +27,23 @@ export default class Mapx extends Map {
     })
   }
 
-  //[value]
-  setArray1D(arr){
+  //param:[value, ...], return:[key, ...]
+  setArray1D(arr:any[]):string[]{
+		let keys = [];
     for(let o=0; o<arr.length; o++){
-      this.set(o, arr[o]);
+			let key = uuid();
+      this.set(key, arr[o]);
+			keys.push(key);
     }
-    return this;
+    return keys;
   }
 
-  //[key, value]
-  setArray2D(arr){
+  //param: [[key, value], ...]
+  setArray2D(arr:any[][]){
     for(let o=0; o<arr.length; o++){
       this.set(arr[o][0], arr[o][1]);
     }
-    return this;
+		return this;
   }
 
 	setObject(obj){
@@ -50,7 +53,7 @@ export default class Mapx extends Map {
     return this;
   }
 
-	toArray(){
+	toArray():any[][]{
 		let arr = [];
 		for(let [k, v] of this.entries()){
 			arr.push([k,v]);
@@ -74,7 +77,7 @@ export default class Mapx extends Map {
     });
   }
 
-  clone(){
+  clone():Mapx{
     return new Mapx(this.toArray());
   }
 
@@ -144,5 +147,15 @@ export default class Mapx extends Map {
 			arr.push(v);
     }
 		return arr;
+	}
+
+	//return key
+	indexOf(value):any {
+		for(let kv of this.entries()){
+			if(kv[1] === value){
+				return kv[0];
+			}
+		}
+		return null;
 	}
 }

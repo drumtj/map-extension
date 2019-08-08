@@ -25,7 +25,7 @@ $ npm install @drumtj/mapx
 Using cdn:
 
 ```html
-<script src="https://unpkg.com/@drumtj/mapx@1.0.1/dist/mapx.js"></script>
+<script src="https://unpkg.com/@drumtj/mapx@1.0.7/dist/mapx.js"></script>
 ```
 
 Using amd, commonjS Module
@@ -95,15 +95,19 @@ var arrayData2D = [
   [65, 'A'], [66, 'B'], [67, 'C']
 ];
 //map = new Mapx(data);
-map.setObject(objectData); // same -> new Mapx(objectData)
-map.setArray1D(arrayData1D); // same -> new Mapx(arrayData1D)
-map.setArray2D(arrayData2D); // same -> new Mapx(arrayData2D)
+map.setObject(objectData); // same -> new Mapx(objectData), return this
+map.setArray1D(arrayData1D); // same -> new Mapx(arrayData1D), return key array
+map.setArray2D(arrayData2D); // same -> new Mapx(arrayData2D), return this
 
 //push and pop like array
 //return key
 let key = map.push("D");
 //return value;
 map.pop();
+
+//find key from value
+//return key;
+map.indexOf("B");
 
 // Return all item
 map.toArray(); // 2D array ([[key, value], ...])
