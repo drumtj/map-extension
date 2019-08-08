@@ -1,6 +1,4 @@
-function timestamp(){
-	return Date.now();
-}
+import uuid from "uuid/v1";
 
 export default class Mapx extends Map {
 	constructor(obj?){
@@ -33,7 +31,7 @@ export default class Mapx extends Map {
   setArray1D(arr:any[]):string[]{
 		let keys = [];
     for(let o=0; o<arr.length; o++){
-			let key = timestamp();
+			let key = uuid();
       this.set(key, arr[o]);
 			keys.push(key);
     }
@@ -115,7 +113,7 @@ export default class Mapx extends Map {
 
 	//return key
 	push(value): any {
-		let key = timestamp();
+		let key = uuid();
 		this.set(key, value);
 		return key;
 	}
