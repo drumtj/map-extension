@@ -183,7 +183,7 @@ export default class Mapx extends Map {
 
 	shift():any{
 		let v = this.entries().next();
-		this.delete(v[0]);
-		return v[1];
+		this.delete(v.value[0]);
+		return v.value[1];
 	}
 }
