@@ -1,10 +1,11 @@
-import uuid from "uuid/v1";
+// import uuid from "uuid/v1";
 
 export default class Mapx extends Map {
+	index = 0;
 	constructor(obj?){
 		super();
     if(Array.isArray(obj)){
-			if(obj[0].length > 1){
+			if(Array.isArray(obj[0])){
         this.setArray2D(obj);
       }else{
         this.setArray1D(obj);
@@ -31,34 +32,41 @@ export default class Mapx extends Map {
   setArray1D(arr:any[]):string[]{
 		let keys = [];
     for(let o=0; o<arr.length; o++){
-			let key = uuid();
+			let key = this.getIndex();//uuid();
       this.set(key, arr[o]);
 			keys.push(key);
     }
     return keys;
   }
 
-  //param: [[key, value], ...]
-  setArray2D(arr:any[][]){
+  //param: [[key, value], ...], return:[key, ...]
+  setArray2D(arr:any[][]):string[]{
+		let key, keys = [];
     for(let o=0; o<arr.length; o++){
-      this.set(arr[o][0], arr[o][1]);
+			if(Array.isArray(arr[o])){
+				keys.push(arr[o][0]);
+	      this.set(arr[o][0], arr[o][1]);
+			}else{
+				key = this.getIndex();
+				keys.push(key);
+				this.set(key, arr[o]);
+			}
     }
-		return this;
+		return keys;
   }
 
+	//param: {}, return:[key, ...]
 	setObject(obj){
+		let keys = [];
     for(let o in obj){
+			keys.push(o);
       this.set(o, obj[o]);
     }
-    return this;
+    return keys;
   }
 
 	toArray():any[][]{
-		let arr = [];
-		for(let [k, v] of this.entries()){
-			arr.push([k,v]);
-    }
-		return arr;
+		return [...this];
   }
 
 	toObject(){
@@ -111,9 +119,23 @@ export default class Mapx extends Map {
     }, r);
   }
 
+	getIndex(){
+		return '__'+this.index.toString(32);
+	}
+
+	updateIndex(){
+		this.index++;
+	}
+
+	set(key, value){
+		super.set(key, value);
+		this.updateIndex();
+		return this;
+	}
+
 	//return key
 	push(value): any {
-		let key = uuid();
+		let key = this.getIndex();//uuid();
 		this.set(key, value);
 		return key;
 	}
@@ -134,19 +156,11 @@ export default class Mapx extends Map {
 	}
 
 	toValues(): any[] {
-		let arr = [];
-		for(let v of this.values()){
-			arr.push(v);
-    }
-		return arr;
+		return [...this.values()];
 	}
 
 	toKeys(): any[] {
-		let arr = [];
-		for(let v of this.keys()){
-			arr.push(v);
-    }
-		return arr;
+		return [...this.keys()];
 	}
 
 	//return key
@@ -157,5 +171,11 @@ export default class Mapx extends Map {
 			}
 		}
 		return null;
+	}
+
+	shift():any{
+		let v = this.entries().next();
+		this.delete(v[0]);
+		return v[1];
 	}
 }
