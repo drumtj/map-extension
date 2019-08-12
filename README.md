@@ -25,7 +25,7 @@ $ npm install @drumtj/mapx
 Using cdn:
 
 ```html
-<script src="https://unpkg.com/@drumtj/mapx@1.0.10/dist/mapx.js"></script>
+<script src="https://unpkg.com/@drumtj/mapx@1.0.11/dist/mapx.js"></script>
 ```
 
 Using amd, commonjS Module

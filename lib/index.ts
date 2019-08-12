@@ -120,7 +120,15 @@ export default class Mapx extends Map {
   }
 
 	getIndex(){
-		return '__'+this.index.toString(32);
+		let key;
+		while(1){
+			key = '__'+this.index.toString(32);
+			if(!this.has(key)){
+				break;
+			}
+			this.index += 10;
+		}
+		return key;
 	}
 
 	updateIndex(){
