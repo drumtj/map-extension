@@ -141,6 +141,23 @@ export default class Mapx extends Map {
 		return this;
 	}
 
+	getFirstItem(){
+		return this.entries().next().value;
+	}
+
+	getLastItem(){
+		let i=0;
+		if(this.size){
+			for(let kv of this.entries()){
+				if(++i >= this.size){
+					return kv;
+				}
+	    }
+		}else{
+			return [];
+		}
+	}
+
 	//return key
 	push(value): any {
 		let key = this.getIndex();//uuid();
@@ -150,17 +167,29 @@ export default class Mapx extends Map {
 
 	//return [key, value];
 	pop(): any[] {
-		let i=0;
-		if(this.size){
-			for(let kv of this.entries()){
-				if(++i >= this.size){
-					this.delete(kv[0]);
-					return kv[1];
-				}
-	    }
-		}else{
-			return;
-		}
+		let v = this.getLastItem();
+		this.delete(v[0]);
+		return v[1];
+		// let i=0;
+		// if(this.size){
+		// 	for(let kv of this.entries()){
+		// 		if(++i >= this.size){
+		// 			this.delete(kv[0]);
+		// 			return kv[1];
+		// 		}
+	  //   }
+		// }else{
+		// 	return;
+		// }
+	}
+
+	shift():any{
+		let v = this.getFirstItem();
+		this.delete(v[0]);
+		return v[1];
+		// let v = this.entries().next();
+		// this.delete(v.value[0]);
+		// return v.value[1];
 	}
 
 	toValues(): any[] {
@@ -181,9 +210,5 @@ export default class Mapx extends Map {
 		return null;
 	}
 
-	shift():any{
-		let v = this.entries().next();
-		this.delete(v.value[0]);
-		return v.value[1];
-	}
+
 }
