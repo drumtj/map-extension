@@ -168,6 +168,7 @@ export default class Mapx extends Map {
 	//return [key, value];
 	pop(): any[] {
 		let v = this.getLastItem();
+		if(!v) return null;
 		this.delete(v[0]);
 		return v[1];
 		// let i=0;
@@ -185,6 +186,7 @@ export default class Mapx extends Map {
 
 	shift():any{
 		let v = this.getFirstItem();
+		if(!v) return null;
 		this.delete(v[0]);
 		return v[1];
 		// let v = this.entries().next();
