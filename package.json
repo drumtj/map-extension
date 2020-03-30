@@ -2,7 +2,7 @@
   "name": "@drumtj/mapx",
   "version": "1.0.14",
   "description": "extension Map class",
-  "main": "./dist/mapx.umd.js",
+  "main": "./dist/mapx.js",
   "scripts": {
     "build": "webpack -p",
     "release": "npm run build && npm run deploy && np --no-cleanup --yolo --no-release-draft",
